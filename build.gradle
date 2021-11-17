@@ -64,6 +64,7 @@ dependencies {
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("org.assertj:assertj-core:3.11.1")
 }
 /* dependencies는 프로젝트 개발에 필요한 의존성들을 선언하는 곳 */
 /* Q. compile은 그레이들 버전 4에서가능하다. 나는 그레이들 버전 7이기 때문에 comile->implimentation,
