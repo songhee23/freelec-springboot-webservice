@@ -40,12 +40,24 @@ mavenCentral은 이전부터 많이 사용하는 저장소이지만, 본인이 �
 dependencies {
 
     implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.projectlombok:lombok')
+    // implementation('org.projectlombok:lombok')
+    implementation 'org.projectlombok:lombok:1.18.10'
+    annotationProcessor 'org.projectlombok:lombok:1.18.10'
+    /*
+    1) prferences.. > Enable annotation processing 체크
+    2) lombok error: variable name not initialized in the default constructor private final String name;
+    생성자가 안만들어지고
+    이런 오류가 나서 확인해보니 gradle 5부터는 어노테이션을 구별해서 추가해줘야 한다고 하네요.
+
+    build.gradle에 기존 디펜던시 제거 후 아래 내용으로 업데이트 해주면 해결.
+    compileOnly 'org.projectlombok:lombok:1.18.10'
+    annotationProcessor 'org.projectlombok:lombok:1.18.10'
+    */
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
     implementation('org.springframework.boot:spring-boot-starter-mustache')
     implementation('com.h2database:h2')
 
-    implementation('org.springframework.boot:spring-boot-starter-oauth2-client')
+    //implementation('org.springframework.boot:spring-boot-starter-oauth2-client')
     implementation('org.springframework.session:spring-session-jdbc')
 
     implementation("org.mariadb.jdbc:mariadb-java-client")
