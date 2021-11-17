@@ -4,7 +4,7 @@ buildscript {
 * 여기서 springBootVersion 전역변수를 생성하고 그 값을 '2.1.9.REALEASE'로 하겠다는 의미
 * 즉, spring-boot-gradle-plugin라는 스프링 부트 그레이들 플러그인의 2.1.9.REALEASE를 의존성으로 받겠다는 의미 */
     ext {
-        springBootVersion = '2.1.9.RELEASE'
+        springBootVersion = '2.2.0.RELEASE'
     }
 
     repositories {
