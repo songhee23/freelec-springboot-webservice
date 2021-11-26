@@ -7,19 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @RunWith(SpringRunner.class)
 /* @RunWith(SpringRunner.class)
-*  - 테스트를 진행할 때 Junit에 내장된 실행자 되에 다른 실행자를 실행시킵니다.
-*  - 여기서는 SpringRunner라는 스프링 실행자를 사용합니다.
-*  - 즉, 스프링 부트 테스트와 Jnunit사이에 연결자 역할을 합니다.
-* */
+ *  - 테스트를 진행할 때 Junit에 내장된 실행자 되에 다른 실행자를 실행시킵니다.
+ *  - 여기서는 SpringRunner라는 스프링 실행자를 사용합니다.
+ *  - 즉, 스프링 부트 테스트와 Jnunit사이에 연결자 역할을 합니다.
+ * */
 @WebMvcTest(controllers = HelloController.class)
 /* @WebMvcTest
  - 여러 스프링 테스트 어노테이션 중, Web(Spring MVC)에 집중할 수 있는 어노테이션 입니다.
@@ -66,6 +68,32 @@ public class HelloControllerTest {
         - Controller에서 "hello"를 리턴하기 때문에 이 값이 맞는지 검증한다.
         *
         * */
+
+    }
+
+    @Test
+    public void helloDto가_리턴된다() throws Exception {
+        String name = "hello";
+        int amount = 1000;
+
+        mvc.perform(get("/hello/dto")
+                        .param("name", name)
+                        .param("amount", String.valueOf(amount)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is(name)))
+                .andExpect(jsonPath("$.amount", is(amount)));
+
+        /*
+        1. Param
+        - API 테스트 할 때 사용될 요청 파라미터를 설정합니다
+        - 단, 값은 String만 허용 됩니다.
+        - 그래서 숫자/날짜 들의 데이터들도 등록할 때는 문자열로 변경해야만 가능
+
+        2. jsonPath
+        - JSON 응답값을 필드별로 검증할 수 있는 메소드입니다.
+        - $를 기준으로 필드명을 명시합니다.
+        - 여기서는 name과 amount를 검증하니, $.name, $.amount로 검증합니다.
+         */
     }
 
 }

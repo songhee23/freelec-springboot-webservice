@@ -39,5 +39,4 @@ public class HelloResponseDtoTest {
                 .endsWith("Rings");
     }
 
-
 }
