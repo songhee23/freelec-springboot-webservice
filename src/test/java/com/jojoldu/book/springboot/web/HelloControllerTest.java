@@ -94,6 +94,63 @@ public class HelloControllerTest {
         - $를 기준으로 필드명을 명시합니다.
         - 여기서는 name과 amount를 검증하니, $.name, $.amount로 검증합니다.
          */
+
+        /*
+        chapter3 스프링부트에서 JPA로 데이터베이스 다뤄보자
+        - 어떻게 하면 관계현 데이터베이스를 이용하는 프로젝트에서 객제지향 프로그래밍을 할 수 있을까 고민했습니다.
+          문제의 해결책으로 JPA라느 자바 표준 ORM(Object Relational Mapping) 기술을 만나게 됩니다.
+        - Mybatis, iBatissms ORM이 아닙니다. SQL Mapper입니다. 가끔 ORM에 대해 Mybatis, iBatis를 얘기하는데, 이둘은 ORM이 아닙니다.
+        - ORM은 객체를 매핑하는 것이고, SQL Mapper는 쿼리를 매핑합니다.
+
+        왜 JPA를 사용하여야 하는가?
+        관계형 데이터베이스로 구축하다보니 프로젝트 대부분이 애플리케이션코드보다 SQL로 가득 차게 된 것이다.
+        관계형 데이터베이스가 SQL만 인식할 수 있기 때문에 각 테이블마다 기본적인 CRUD(create, read, update, delete) SQL을 매번 생성해야 합니다.
+        개발자가 아무리 자바 클래스를 아름답게 설계해도 SQL을 통해서만 데이터베이스에 저장하고 조회할 수 있다.
+
+        --> 단순 반복 작업 문제
+
+        관계형 데이터베이스로 객체지향을 표현할 수 없음
+        객체지향에서의 부모 객체를 가져올 때
+
+        User user = findUser();
+        Group group = user.getGroup();
+
+        -> 누구나 명확하게 User와 Group은 부모-자식 관계임을 알 수 있다.
+
+        하지만 데이터베이스가 추가되면?
+
+        User user = userDao.findUser();
+        Group group = groupDao.findGroup(user.getGroupId());
+        -> User따로, Group따로 조회하게 된다. User와 Group이 어떤 관계인지 알 수 없음
+        상속, 1:N 등 다양한 객체 모델링을 데이터베이스로 구현할 수 없다.
+
+        이를 해결하기 위해 JPA등장하게 됨
+
+        JPA <- Hibernate <- Spring Data JPA
+        구현체들을 좀 더 쉽게 사용하고자 추상화시킨 Spring Data Jpa모듈 이용하여 JPA기술을 다룬다.
+
+        이렇게 한 단계 더 감싸놓은 Spring Data JPA가 등장한 이유는 크게 두가지다.
+        - 구현제 교체의 용의성
+        - 저장소 교체의 용의성
+
+        구현체 교체의 용의성이란? Hibernate외에 다른 구현체로 쉽게 교체하기 위함
+        ex) redis클라이언트가 jedis에서 lettuce로 대세가 넘어갈 때 Spring Data Redis쓴 분들은 쉽게 교체함
+
+        저장소 교체의 용의성이란? 관계형 데이터베이스 외에 다른 저장소로 쉽게 교체하기 위함
+        서비스 초기에는 관계형 데이터베이스로 모든 기능을 처리했지만, 점점 트래픽이 많아져 관계형 데이터베이스로는
+        도저히 감당이 안될 때가 있습니다. 이때 MongoDB로 교체가 필요하다면 개발자는 Spring Data JPA에서
+        Spring Data MongoDB로 의존성만 교체하면 됩니다.
+
+        이는 Spring Data의 하위 프로젝트들은 기본적인 CRUD 의 인터페이스가 갇기 때문입니다.
+
+        JPA를 다루면? 가장 먼저 CRUD쿼리를 직접 작성할 필요가 없습니다. 부모-자식 관계표현, 1:N관계표현, 상태와
+        행위를 한 곳에서 관리하는 등 객체지향 프로그래밍을 쉽게 할 수 있습니다.
+
+        속도이슈?  괜츈! 걱정마! 대용량
+
+
+        * */
+
     }
 
-}
+음
