@@ -20,7 +20,8 @@ public class HelloResponseDtoTest {
         assertThat(dto.getAmount()).isEqualTo(amount);
         // assertThat(actual).isEqualTo(Expected);
         // 왼쪽에서 오른쪽으로 자연스럽게 읽힌다.
-        /* 1. assertJ
+        /*
+        1. assertJ
         - assertJ라는 테스트 검증 라이브러리의 검증 메소드입니다.
         - 검증하고 싶은 대상을 메소드 인자로 받습니다.
         - 메소드 체이닝이 지원되어 isEqualTo와 같이 메소드를 이어서 사용할 수 있습니다.
