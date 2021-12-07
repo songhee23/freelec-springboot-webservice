@@ -70,6 +70,11 @@ public class Posts {
     - 해당 클래스의 빌더 패턴 클래스를 생성
     - 생성자 상단에 선언시, 생성자에 포함된 필드만 빌더에 포함
     * */
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }
 /*
 이 Posts 클래스에는 한가지 특징이 있다. 바로 Setter 메소드가 없다는 점
